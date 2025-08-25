@@ -17,7 +17,7 @@ export class TransacaoController {
 
   @HttpCode(201)
   @Post()
-  postTransacao(@Body() transacao: PostTransacaoInputDTO): void {
+  async postTransacao(@Body() transacao: PostTransacaoInputDTO): Promise<void> {
     const horaAtual = new Date();
     const valorMinimoTransacao = 0;
 
@@ -27,7 +27,7 @@ export class TransacaoController {
     if (transacao.valor < valorMinimoTransacao) {
       throw new UnprocessableEntityException();
     }
-    const saveTransacao = this.transacaoRepository.saveTransacao({
+    const saveTransacao = await this.transacaoRepository.saveTransacao({
       dataHora: transacao.dataHora,
       valor: transacao.valor,
     });

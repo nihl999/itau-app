@@ -1,6 +1,5 @@
-//todo TYPE
-type Transacao = any;
+import { Transacao } from '../../domain/transacao';
 
 export interface TransacaoRepository {
-  saveTransacao(transacao: Transacao): boolean;
+  saveTransacao(transacao: Transacao): Promise<boolean>;
 }
