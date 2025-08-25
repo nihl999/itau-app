@@ -16,6 +16,11 @@ export class InMemoryTransacaoRepository implements TransacaoRepository {
   }
 
   buscarUltimoMinuto(): Promise<Transacao[]> {
-    return Promise.resolve([]);
+    const ultimoMinuto = new Date();
+    ultimoMinuto.setMinutes(ultimoMinuto.getMinutes() - 1);
+    const transacoesUltimoMinuto = this.transacoes.filter(
+      (transacao) => transacao.dataHora > ultimoMinuto,
+    );
+    return Promise.resolve(transacoesUltimoMinuto);
   }
 }

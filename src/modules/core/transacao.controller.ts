@@ -17,30 +17,30 @@ export class TransacaoController {
   @HttpCode(201)
   @Post()
   async postTransacao(@Body() transacao: PostTransacaoInputDTO): Promise<void> {
-    const horaAtual = new Date();
+    const agora = new Date();
     const valorMinimoTransacao = 0;
 
-    if (transacao.dataHora > horaAtual) {
+    if (transacao.dataHora > agora) {
       throw new UnprocessableEntityException();
     }
     if (transacao.valor < valorMinimoTransacao) {
       throw new UnprocessableEntityException();
     }
-    const saveTransacao = await this.transacaoRepository.salvar({
+    const salvar = await this.transacaoRepository.salvar({
       dataHora: transacao.dataHora,
       valor: transacao.valor,
     });
     //NOTE Caso não explicito no teste
-    if (!saveTransacao) throw new InternalServerErrorException();
+    if (!salvar) throw new InternalServerErrorException();
     return;
   }
 
   @HttpCode(200)
   @Delete()
   async deleteTransacao(): Promise<void> {
-    const clearStorage = await this.transacaoRepository.excluirTodas();
+    const excluirTodas = await this.transacaoRepository.excluirTodas();
     //NOTE Caso não explicito no teste
-    if (!clearStorage) throw new InternalServerErrorException();
+    if (!excluirTodas) throw new InternalServerErrorException();
     return;
   }
 }

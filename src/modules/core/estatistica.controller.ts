@@ -1,11 +1,13 @@
-import { Controller, Get, NotImplementedException } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { Estatistica } from './application/dtos/estatistica.dto';
+import { EstatisticaService } from './infra/services/estatistica.service';
 
 @Controller('estatistica')
 export class EstatisticaController {
-  constructor() {}
+  constructor(private readonly estatisticaService: EstatisticaService) {}
 
   @Get()
-  getEstatistica(): string {
-    throw new NotImplementedException();
+  async getEstatistica(): Promise<Estatistica> {
+    return this.estatisticaService.getEstatisticas();
   }
 }
