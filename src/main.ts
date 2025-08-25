@@ -10,6 +10,7 @@ async function bootstrap() {
     new ValidationPipe({
       forbidNonWhitelisted: true,
       transform: true,
+      disableErrorMessages: true,
     }),
   );
   const config = new DocumentBuilder()
