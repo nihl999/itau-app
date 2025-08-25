@@ -10,4 +10,8 @@ export class InMemoryTransacaoRepository implements TransacaoRepository {
     this.transacoes.push(transacao);
     return Promise.resolve(true);
   }
+  clearStorage(): Promise<boolean> {
+    this.transacoes = [];
+    return Promise.resolve(true);
+  }
 }

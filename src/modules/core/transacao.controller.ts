@@ -4,7 +4,6 @@ import {
   Delete,
   HttpCode,
   InternalServerErrorException,
-  NotImplementedException,
   Post,
   UnprocessableEntityException,
 } from '@nestjs/common';
@@ -36,8 +35,12 @@ export class TransacaoController {
     return;
   }
 
+  @HttpCode(200)
   @Delete()
-  deleteTransacao(): string {
-    throw new NotImplementedException();
+  async deleteTransacao(): Promise<void> {
+    const clearStorage = await this.transacaoRepository.clearStorage();
+    //NOTE Caso não explicito no teste
+    if (!clearStorage) throw new InternalServerErrorException();
+    return;
   }
 }
