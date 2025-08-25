@@ -8,7 +8,7 @@ import {
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { PostTransacaoInputDTO } from './application/dtos/transacao.dto';
-import type { TransacaoRepository } from './application/repository/transacao.repository';
+import type { TransacaoRepository } from './application/repositories/transacao.repository';
 
 @Controller('transacao')
 export class TransacaoController {
@@ -26,7 +26,7 @@ export class TransacaoController {
     if (transacao.valor < valorMinimoTransacao) {
       throw new UnprocessableEntityException();
     }
-    const saveTransacao = await this.transacaoRepository.saveTransacao({
+    const saveTransacao = await this.transacaoRepository.salvar({
       dataHora: transacao.dataHora,
       valor: transacao.valor,
     });
@@ -38,7 +38,7 @@ export class TransacaoController {
   @HttpCode(200)
   @Delete()
   async deleteTransacao(): Promise<void> {
-    const clearStorage = await this.transacaoRepository.clearStorage();
+    const clearStorage = await this.transacaoRepository.excluirTodas();
     //NOTE Caso não explicito no teste
     if (!clearStorage) throw new InternalServerErrorException();
     return;
