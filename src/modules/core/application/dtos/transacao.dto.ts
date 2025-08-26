@@ -1,13 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Transform, Type } from 'class-transformer';
-import {
-  IsDate,
-  isISO8601,
-  IsISO8601,
-  IsNotEmpty,
-  IsNumber,
-  ValidationError,
-} from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsDate, isISO8601, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class PostTransacaoInputDTO {
   @ApiProperty({
