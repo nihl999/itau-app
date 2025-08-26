@@ -4,7 +4,7 @@ import { Transacao } from '../../domain/transacao';
 
 @Injectable({ scope: Scope.DEFAULT })
 export class InMemoryTransacaoRepository extends TransacaoRepository {
-  transacoes: Transacao[];
+  transacoes: Transacao[] = [];
 
   salvar(transacao: Transacao): Promise<boolean> {
     this.transacoes.push(transacao);

@@ -2,9 +2,10 @@ import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { HealthController } from './health.controller';
 import { CoreModule } from './modules/core/core.module';
 import { LoggerMiddleware } from './modules/shared/infra/middlewares/http-logger.middleware';
+import { TerminusModule } from '@nestjs/terminus';
 
 @Module({
-  imports: [CoreModule],
+  imports: [CoreModule, TerminusModule],
   controllers: [HealthController],
   providers: [],
 })

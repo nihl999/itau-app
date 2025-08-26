@@ -45,8 +45,6 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       forbidNonWhitelisted: true,
-      transform: true,
-      disableErrorMessages: true,
     }),
   );
   const config = new DocumentBuilder()
