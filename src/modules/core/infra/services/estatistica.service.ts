@@ -2,7 +2,7 @@
 
 import { Injectable } from '@nestjs/common';
 import { Estatistica } from '../../application/dtos/estatistica.dto';
-import type { TransacaoRepository } from '../../application/repositories/transacao.repository';
+import { TransacaoRepository } from '../../application/repositories/transacao.repository';
 
 @Injectable()
 export class EstatisticaService {

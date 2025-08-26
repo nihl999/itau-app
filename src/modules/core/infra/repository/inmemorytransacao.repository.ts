@@ -3,7 +3,7 @@ import { TransacaoRepository } from '../../application/repositories/transacao.re
 import { Transacao } from '../../domain/transacao';
 
 @Injectable({ scope: Scope.DEFAULT })
-export class InMemoryTransacaoRepository implements TransacaoRepository {
+export class InMemoryTransacaoRepository extends TransacaoRepository {
   transacoes: Transacao[];
 
   salvar(transacao: Transacao): Promise<boolean> {

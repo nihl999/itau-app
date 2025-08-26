@@ -8,7 +8,7 @@ import {
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { PostTransacaoInputDTO } from './application/dtos/transacao.dto';
-import type { TransacaoRepository } from './application/repositories/transacao.repository';
+import { TransacaoRepository } from './application/repositories/transacao.repository';
 
 @Controller('transacao')
 export class TransacaoController {

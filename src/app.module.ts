@@ -1,10 +1,15 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
+import { HealthController } from './health.controller';
 import { CoreModule } from './modules/core/core.module';
+import { LoggerMiddleware } from './modules/shared/infra/middlewares/http-logger.middleware';
 
 @Module({
   imports: [CoreModule],
-  controllers: [AppController],
+  controllers: [HealthController],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}
